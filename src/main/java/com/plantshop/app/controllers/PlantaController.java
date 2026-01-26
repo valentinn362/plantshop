@@ -29,7 +29,7 @@ public class PlantaController {
         return ResponseEntity.ok(plantaService.obtenerPlantaPorId(id));
     }
 
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<PlantaDTO> crear(@Valid @RequestBody PlantaDTO plantaDTO) {
         return new ResponseEntity<>(plantaService.crearPlanta(plantaDTO), HttpStatus.CREATED);
     }
