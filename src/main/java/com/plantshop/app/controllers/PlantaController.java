@@ -44,4 +44,10 @@ public class PlantaController {
         plantaService.eliminarPlanta(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/activar")
+    public ResponseEntity<Void> reactivar(@PathVariable Long id) {
+        plantaService.reactivarPlanta(id);
+        return ResponseEntity.noContent().build();
+    }
 }

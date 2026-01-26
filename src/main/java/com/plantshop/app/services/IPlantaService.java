@@ -10,4 +10,6 @@ public interface IPlantaService {
     PlantaDTO crearPlanta(PlantaDTO crearPlantaDTO);
     PlantaDTO actualizarPlanta(Long id, PlantaDTO crearPlantaDTO);
     void eliminarPlanta(Long id);
+
+    void reactivarPlanta(Long id);
 }

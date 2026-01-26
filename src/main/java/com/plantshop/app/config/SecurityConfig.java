@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -13,12 +14,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Deshabilitamos CSRF para poder hacer POST desde Postman
+                .csrf(AbstractHttpConfigurer::disable) // Desactivar CSRF para pruebas
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**").permitAll() // Permitimos todo lo que empiece con /api/
-                        .anyRequest().authenticated()
+                        .requestMatchers("/", "/css/**", "/js/**", "/api/**").permitAll() // Abrir rutas clave
+                        .anyRequest().permitAll() // POR AHORA, abrimos todo para que no te pida pass
                 );
-
         return http.build();
     }
 }

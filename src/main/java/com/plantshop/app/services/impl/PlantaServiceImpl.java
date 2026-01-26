@@ -1,7 +1,6 @@
 package com.plantshop.app.services.impl;
 
 import com.plantshop.app.dtos.PlantaDTO;
-import com.plantshop.app.enums.TipoProducto;
 import com.plantshop.app.exceptions.ResourceNotFoundException;
 import com.plantshop.app.mappers.PlantaMapper;
 import com.plantshop.app.models.Planta;
@@ -25,6 +24,7 @@ public class PlantaServiceImpl implements IPlantaService {
     @Autowired
     private PlantaMapper plantaMapper;  // Inyectas el mapper
 
+    @Transactional(readOnly = true)
     @Override
     public List<PlantaDTO> obtenerTodasPlantas() {
         return plantaRepository.findByActivoTrue()
@@ -40,6 +40,7 @@ public class PlantaServiceImpl implements IPlantaService {
         return plantaMapper.toDTO(planta);  // Usas el mapper
     }
 
+    @Transactional
     @Override
     public PlantaDTO crearPlanta(PlantaDTO plantaDTO) {
         if (plantaRepository.existsByCodigoSKU(plantaDTO.getCodigoSKU())) {
@@ -54,6 +55,7 @@ public class PlantaServiceImpl implements IPlantaService {
         return plantaMapper.toDTO(guardada);
     }
 
+    @Transactional
     @Override
     public PlantaDTO actualizarPlanta(Long id, PlantaDTO plantaDTO) {
         // 1. Buscamos la entidad existente
@@ -71,6 +73,7 @@ public class PlantaServiceImpl implements IPlantaService {
         return plantaMapper.toDTO(actualizada);
     }
 
+    @Transactional
     @Override
     public void eliminarPlanta(Long id) {
         Planta planta = plantaRepository.findById(id)
@@ -79,5 +82,18 @@ public class PlantaServiceImpl implements IPlantaService {
         planta.setActivo(false);
         planta.setFechaActualizacion(LocalDateTime.now());
         plantaRepository.save(planta);
+    }
+
+    @Override
+    @Transactional
+    public void reactivarPlanta(Long id) {
+        Planta planta = plantaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Planta no encontrada con ID: " + id));
+
+        planta.setActivo(true);
+        // Al estar en un método @Transactional, Hibernate detecta el cambio
+        // y hace el update automáticamente al finalizar.
+
+        plantaRepository.save(planta); // El método que uses para pasar de Entity a DTO
     }
 }
