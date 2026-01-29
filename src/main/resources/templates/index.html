@@ -2,18 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>PlantShop - Inicio</title>
+    <title>PlantShop Admin</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<div class="container">
-    <h1>Bienvenido a PlantShop 🌿</h1>
-    <p>Tu tienda de plantas favorita está en construcción.</p>
 
-    <h3>Acciones rápidas:</h3>
-    <ul>
-        <li><a href="/api/plantas">Ver JSON de Plantas</a></li>
-    </ul>
+<div class="container">
+    <h1>PlantShop 🌿 Inventario</h1>
+
+    <form id="formPlanta" class="form-alta">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="number" id="precio" placeholder="Precio" step="0.01" required>
+        <input type="number" id="stock" placeholder="Stock" required>
+        <input type="text" id="codigoSKU" placeholder="SKU" required>
+        <button type="submit" class="btn-json">Añadir Planta +</button>
+    </form>
+
+    <hr>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${plantas}">
+            <td th:text="${p.nombre}" style="font-weight: 500;">Planta</td>
+            <td th:text="'$' + ${p.precio}">0.0</td>
+            <td th:text="${p.stock}">0</td>
+            <td>
+                <span th:if="${p.activo}" class="badge badge-activo">EN VENTA</span>
+                <span th:unless="${p.activo}" class="badge badge-inactivo">PAUSADO</span>
+            </td>
+            <td>
+                <button th:onclick="'cambiarEstado(' + ${p.id} + ', ' + ${p.activo} + ')'"
+                        th:class="${p.activo} ? 'btn-accion btn-rojo' : 'btn-accion btn-verde'">
+                    <span th:text="${p.activo} ? 'Desactivar' : 'Activar'">Acción</span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 30px; text-align: right;">
+        <a href="/api/plantas" class="btn-json">Ver API JSON 🔗</a>
+    </div>
 </div>
+
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

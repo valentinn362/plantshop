@@ -1,0 +1,120 @@
+:root {
+    --verde-oscuro: #1b5e20;
+    --verde-medio: #2e7d32;
+    --verde-claro: #4caf50;
+    --blanco: #ffffff;
+    --fondo: #f1f8e9;
+    --rojo: #d32f2f;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--fondo);
+    color: #333;
+    margin: 0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 95%;
+    max-width: 1100px;
+    background: var(--blanco);
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid var(--verde-medio);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: var(--verde-oscuro);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--verde-claro);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Formulario */
+.form-alta {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.form-alta input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    flex: 1;
+    min-width: 150px;
+}
+
+.form-alta input:focus {
+    border-color: var(--verde-medio);
+    box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+th {
+    background-color: var(--verde-medio);
+    color: var(--blanco);
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Badges y Botones */
+.badge {
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.badge-activo { background: #c8e6c9; color: #256029; }
+.badge-inactivo { background: #ffcdd2; color: #c62828; }
+
+.btn-json {
+    background-color: var(--verde-claro);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-accion {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.btn-rojo { background-color: var(--rojo); }
+.btn-verde { background-color: var(--verde-medio); }
+.btn-verde { background-color: var(--verde-medio); }

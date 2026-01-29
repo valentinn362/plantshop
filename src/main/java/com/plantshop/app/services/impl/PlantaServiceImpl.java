@@ -49,7 +49,8 @@ public class PlantaServiceImpl implements IPlantaService {
 
         // El mapper ahora se encarga de casi todo, incluyendo tipoProducto y fecha
         Planta planta = plantaMapper.toEntity(plantaDTO);
-        planta.setFechaActualizacion(java.time.LocalDateTime.now());
+        planta.setFechaCreacion(LocalDateTime.now());
+        planta.setFechaActualizacion(LocalDateTime.now());
 
         Planta guardada = plantaRepository.save(planta);
         return plantaMapper.toDTO(guardada);

@@ -16,7 +16,9 @@ import java.time.LocalDateTime;
 @Table(name = "productos")
 public abstract class Producto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Esto obliga a Java a hablar directamente con la secuencia productos_id_seq que PostgreSQL usa.
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prod_seq")
+    @SequenceGenerator(name = "prod_seq", sequenceName = "productos_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false)
