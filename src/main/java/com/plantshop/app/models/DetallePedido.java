@@ -17,6 +17,7 @@ public class DetallePedido {
 
     private Integer cantidad;
     private Double precioUnitario;
+    private Double subtotal; // Calculado: cantidad * precioUnitario
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")

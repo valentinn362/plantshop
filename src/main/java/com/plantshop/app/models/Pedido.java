@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "pedido")
+@Table(name = "pedidos")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,6 +31,7 @@ public class Pedido {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    // CascadeType.ALL es clave: guarda los detalles junto al pedido
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetallePedido> detalles = new ArrayList<>();
 }

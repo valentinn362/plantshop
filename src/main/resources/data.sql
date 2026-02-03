@@ -18,3 +18,5 @@ VALUES (nextval('productos_id_seq'), 'Sansevieria Trifasciata', 'Conocida como L
 
 INSERT INTO plantas (producto_id, tipo_planta, frecuencia_riego, requerimientos_luz, altura_maxima, nivel_cuidado, temporada)
 VALUES (currval('productos_id_seq'), 'INTERIOR', 'Mensual', 'Baja a alta luz', 1.2, 'Muy fácil', 'Invierno');
+
+INSERT INTO clientes (nombre, email) VALUES ('Juan Perez', 'juan@email.com');

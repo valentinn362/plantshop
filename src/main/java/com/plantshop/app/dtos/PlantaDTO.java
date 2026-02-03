@@ -30,7 +30,7 @@ public class PlantaDTO {
     private String codigoSKU;
     private Boolean activo;
 
-    @Min(value = 5, message = "El stock no puede ser menor a 4")
+    @Min(value = 5, message = "El stock no puede ser menor a 5")
     private Integer minStock;
 
     private String tamaño;
